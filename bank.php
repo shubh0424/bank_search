@@ -16,26 +16,17 @@
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
 </head>
 <body>  
-
-<?php
-
-?>
-
-<h2>Bank Search Module</h2>
-
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-
-<select id="mySelect" onchange="myFunction()">
-  <option value="MUMBAI">Mumbai</option>
-  <option value="BANGALORE">Bangalore</option>
-  <option value="PUNE">Pune</option>
-  <option value="DELHI">Delhi</option>
-  <option value="NOIDA">Noida</option>
-</select>
-<br>
-<!-- <p id="demo"></p> -->
-  <div class="col-md-4 sessin" style="display: none;">
-     <table class="tableSeesn" id="tble">
+  <h2>Bank Search Module</h2>
+    <select id="mySelect" onchange="myFunction()">
+      <option value="MUMBAI">Mumbai</option>
+      <option value="BANGALORE">Bangalore</option>
+      <option value="PUNE">Pune</option>
+      <option value="DELHI">Delhi</option>
+      <option value="NOIDA">Noida</option>
+    </select>
+    <br>
+    <div class="col-md-4 sessin" style="display: none;">
+      <table class="tableSeesn" id="tble">
         <thead>
           <tr>
             <th class="sesnthtd">#</th>
@@ -46,33 +37,20 @@
           </tr>
         </thead>
         <tbody></tbody>
-  
-  
-  
- 
-</table>
-                
-            </div>
- 
-</form>
-
-<?php
-
-?>
+      </table>
+    </div>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script>
 function myFunction() {
   var x = document.getElementById("mySelect").value;
  
-  // alert(x);
-  $(".tableSeesn tbody").html('');
+  
   $('#tble').DataTable().destroy();
+  $(".tableSeesn tbody").html('');
   $.ajax({
-            // datatype:"json",
+            
             cache:false,
             url:"https://vast-shore-74260.herokuapp.com/banks?city="+x,
-            // data:{user_id:t_person,commnt:comment,odr_id:odr_id},
-            
             success: function (data) {
             
                  $(".sessin").show();
@@ -90,8 +68,6 @@ function myFunction() {
                   $('#tble').DataTable();
             },
         });
-
-  // document.getElementById("demo").innerHTML = "You selected: " + x;
 }
 
 </script>
